@@ -1,23 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+const playSound = (sound: string) => {
+  const audio = new Audio(`${sound}`);
+  audio.play();
+};
+
 function App() {
+  const [showImage, setShowImage] = useState<boolean>(false);
+
+  const onClickButton = () =>
+  {
+    playSound(`${process.env.PUBLIC_URL}/GET OUT Meme Sound Effect.mp3`);
+    playSound(`${process.env.PUBLIC_URL}/sadcat.mp3`)
+    setShowImage(true);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div className='vbucks-container'>
+          <img src={`${process.env.PUBLIC_URL}/v-bucks.png`}/>
+          <img src={`${process.env.PUBLIC_URL}/fortnite-transparent-avatar-8.png`}/>
+          <img src={`${process.env.PUBLIC_URL}/v-bucks.png`}/>
+        </div>
+        <button className="image-button" onClick={onClickButton}/>
+        <img src={`${process.env.PUBLIC_URL}/sadcat_background.jpeg`} className='sadcat-background'
+          style={{
+            opacity: showImage ? 1 : 0,
+            transition: "opacity 5s",
+            zIndex: showImage ? 1 : -99,
+          }}
+        />
       </header>
     </div>
   );
